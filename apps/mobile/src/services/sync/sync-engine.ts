@@ -7,6 +7,9 @@ const LAST_SYNC_KEY = 'lastSyncTimestamp';
 const adapter = createHealthAdapter();
 
 export async function syncHealthData(deviceId: string): Promise<{ synced: number }> {
+  const granted = await adapter.requestPermissions();
+  if (!granted) throw new Error('건강 데이터 접근 권한이 필요합니다');
+
   const lastSync = await AsyncStorage.getItem(LAST_SYNC_KEY);
   const start = lastSync ? new Date(lastSync) : new Date(Date.now() - 24 * 60 * 60 * 1000);
   const end = new Date();

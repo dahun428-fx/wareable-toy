@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import * as SecureStore from 'expo-secure-store';
 import { apiClient } from './api';
@@ -8,7 +9,9 @@ GoogleSignin.configure({
 });
 
 export async function signInWithGoogle() {
-  await GoogleSignin.hasPlayServices();
+  if (Platform.OS === 'android') {
+    await GoogleSignin.hasPlayServices();
+  }
   const response = await GoogleSignin.signIn();
   const idToken = response.data?.idToken;
 

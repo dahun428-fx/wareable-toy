@@ -14,6 +14,9 @@ async function authPluginFn(app: FastifyInstance) {
   await app.register(fjwt, {
     secret: env.JWT_SECRET,
     sign: { expiresIn: '15m' },
+    formatUser(payload) {
+      return { id: payload.sub, email: payload.email };
+    },
   });
 
   app.decorate('authenticate', async function (request: FastifyRequest, reply: FastifyReply) {

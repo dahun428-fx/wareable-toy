@@ -20,9 +20,9 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const { user } = await signInWithGoogle();
       set({ user, isAuthenticated: true, isLoading: false });
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Login failed:', error);
       set({ isLoading: false });
-      throw error;
     }
   },
 

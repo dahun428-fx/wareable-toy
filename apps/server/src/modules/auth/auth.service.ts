@@ -8,9 +8,10 @@ import type { FastifyInstance } from 'fastify';
 const googleClient = new OAuth2Client(env.GOOGLE_CLIENT_ID);
 
 export async function verifyGoogleToken(idToken: string) {
+  const allowedAudiences = [env.GOOGLE_CLIENT_ID, env.GOOGLE_IOS_CLIENT_ID].filter(Boolean);
   const ticket = await googleClient.verifyIdToken({
     idToken,
-    audience: env.GOOGLE_CLIENT_ID,
+    audience: allowedAudiences,
   });
   const payload = ticket.getPayload();
   if (!payload) throw new Error('Invalid Google token');
