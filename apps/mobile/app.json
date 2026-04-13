@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Wearable Health",
+    "slug": "wareable-health",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "wareable",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.wareable.health",
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "건강 데이터를 읽어 대시보드에 표시합니다.",
+        "NSHealthUpdateUsageDescription": "건강 데이터를 동기화합니다."
+      }
+    },
+    "android": {
+      "package": "com.wareable.health",
+      "permissions": [
+        "android.permission.health.READ_HEART_RATE",
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_SLEEP",
+        "android.permission.health.READ_TOTAL_CALORIES_BURNED"
+      ]
+    },
+    "plugins": [
+      "expo-background-fetch",
+      "expo-task-manager",
+      "expo-secure-store"
+    ]
+  }
+}
