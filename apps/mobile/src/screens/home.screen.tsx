@@ -6,9 +6,10 @@ import { registerBackgroundSync } from '../services/sync/background-sync';
 
 export function HomeScreen({ navigation }: any) {
   const { user } = useAuthStore();
-  const { isSyncing, lastSyncedAt, lastSyncCount, error, sync } = useSyncStore();
+  const { activeDeviceId, isSyncing, isInitializing, lastSyncedAt, lastSyncCount, error, initDevice, sync } = useSyncStore();
 
   useEffect(() => {
+    initDevice();
     registerBackgroundSync();
   }, []);
 
@@ -34,12 +35,12 @@ export function HomeScreen({ navigation }: any) {
         )}
         {error && <Text style={styles.errorText}>{error}</Text>}
         <TouchableOpacity
-          style={[styles.syncButton, isSyncing && styles.syncButtonDisabled]}
-          onPress={() => sync('default-device-id')}
-          disabled={isSyncing}
+          style={[styles.syncButton, (isSyncing || isInitializing || !activeDeviceId) && styles.syncButtonDisabled]}
+          onPress={() => sync()}
+          disabled={isSyncing || isInitializing || !activeDeviceId}
         >
           <Text style={styles.syncButtonText}>
-            {isSyncing ? '동기화 중...' : '지금 동기화'}
+            {isInitializing ? '기기 등록 중...' : isSyncing ? '동기화 중...' : '지금 동기화'}
           </Text>
         </TouchableOpacity>
       </View>

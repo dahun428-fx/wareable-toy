@@ -1,3 +1,4 @@
+import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
@@ -8,7 +9,7 @@ import { useAuthStore } from './stores/auth.store';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+function App() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   return (
@@ -27,3 +28,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+registerRootComponent(App);

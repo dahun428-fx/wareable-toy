@@ -4,31 +4,33 @@
   "main": "src/App.tsx",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@babel/runtime": "^7.29.2",
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-google-signin/google-signin": "^13.1.0",
+    "@react-navigation/native": "^7.1.0",
+    "@react-navigation/native-stack": "^7.3.0",
     "@wareable/shared": "workspace:*",
+    "axios": "^1.8.0",
     "expo": "~52.0.0",
     "expo-background-fetch": "~13.0.0",
     "expo-secure-store": "~14.0.0",
     "expo-status-bar": "~2.0.0",
     "expo-task-manager": "~12.0.0",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-native": "0.76.9",
     "react-native-health": "^1.18.0",
     "react-native-health-connect": "^3.2.0",
-    "@react-native-google-signin/google-signin": "^13.1.0",
-    "@react-navigation/native": "^7.1.0",
-    "@react-navigation/native-stack": "^7.3.0",
+    "react-native-safe-area-context": "~4.12.0",
     "react-native-screens": "~4.4.0",
-    "react-native-safe-area-context": "~4.14.0",
-    "zustand": "^5.0.5",
-    "axios": "^1.8.0"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
-    "typescript": "^5.7.0",
-    "@types/react": "^19.1.0"
+    "@types/react": "^18.3.28",
+    "typescript": "^5.7.0"
   }
 }

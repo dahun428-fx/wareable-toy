@@ -16,6 +16,17 @@ apiClient.interceptors.request.use(async (config) => {
   return config;
 });
 
+// Device API
+export async function getDevices() {
+  const { data } = await apiClient.get('/api/devices');
+  return data.data as Array<{ id: string; platform: string; deviceName: string | null; isActive: boolean }>;
+}
+
+export async function registerDevice(platform: string, deviceName?: string, deviceModel?: string) {
+  const { data } = await apiClient.post('/api/devices', { platform, deviceName, deviceModel });
+  return data.data as { id: string; platform: string; deviceName: string | null };
+}
+
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
